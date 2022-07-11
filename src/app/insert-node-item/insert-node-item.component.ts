@@ -28,10 +28,8 @@ export class InsertNodeItemComponent {
   }
 
   onSubmit(){			
-    if (this.insertFrm.invalid)
-    {
-      return;
-    }		
+		
+
     let item = new NodeItem();
     item.id = this.insertFrm.controls["id"].value;
     item.name = this.insertFrm.controls["name"].value;

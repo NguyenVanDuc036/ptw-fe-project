@@ -1,35 +1,74 @@
-<div class="card shadow mb-4">
-  <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-  </div>
-  <div class="card-body">
-      <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>IdClass</th>
-                  </tr>
-              </thead>
-              <tfoot>
-                  <tr>
-                      <th>id</th>
-                      <th>name</th>
-                      <th>IdClass</th>
-                  </tr>
-              </tfoot>
-              <tbody>
-                  <!-- <tr  *ngFor="let item of items | async" > -->
-                    <tr  *ngFor="let item of items | paginate: config" >
-                      <td>{{ item.id }}</td>
-                      <td>{{ item.name }}</td>
-                      <td>{{ item.classID }}</td>
-                  </tr>
-              </tbody>
-          </table>
-          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-          <!-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div> -->
-      </div>
-  </div>
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> address </th>
+      <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
+      <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="numberPhone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> numberPhone </th>
+      <td mat-cell *matCellDef="let row"> {{row.numberPhone}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> position </th>
+      <!-- <td mat-cell *matCellDef="let row"> {{row.position}} </td> -->
+      <td    [ngSwitch]="row.position" mat-cell *matCellDef="let row">
+        <button style="width: 7rem !important;" class="btn btn-success" *ngSwitchCase="'bartending'">bartending</button>
+        <button style="width: 7rem !important;" class="btn btn-danger" *ngSwitchCase="'cashier'">cashier</button>
+        <button style="width: 7rem !important;" class="btn btn-warning" *ngSwitchCase="'service'">service</button>
+    </ng-container>
+
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> actions </th>
+        <td mat-cell *matCellDef="let row"> 
+          <button class="btn btn-outline-danger mr-2" (click)="deleteEmployee(row.id)" >Delete</button>
+          <button [routerLink]="['/admin/employees',row.id]" class="btn btn-outline-primary mr-2"  >Edit</button>
+          <button [routerLink]="['/admin/employees/detail/',row.id]" class="btn btn-outline-info"  >detail</button>
+
+        </td>
+      </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
+
+
+

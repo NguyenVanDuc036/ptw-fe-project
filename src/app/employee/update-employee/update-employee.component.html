@@ -1,0 +1,90 @@
+<div style="background-image: url(https://login.cyberlearn.vn/static/media/background.b697469b.png) ;" class="w-75 container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5 ">
+                                <div class="text-left">
+                                    <h1 class="h4 text-gray-900 mb-4">Update employee</h1>
+                                </div>
+                                <form [formGroup] ="insertFrm" (ngSubmit)="onSubmit()"  class="user w-75">
+
+
+                                    <div class="form-group">
+                                        <span class="mr-3" >Email</span><br/>
+                                        <input formControlName="email" type="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter  Email...">
+                                            <div *ngIf="insertFrm.controls['email'].hasError('required') && (insertFrm.controls['email'].dirty ||insertFrm.controls['email'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Email is not valid</i>
+                                            </div>
+                                            
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <span class="mr-3" >Address</span><br/>
+                                        <input formControlName="address" type="text" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter address">
+                                            <div *ngIf="insertFrm.controls['address'].hasError('required') && (insertFrm.controls['address'].dirty ||insertFrm.controls['address'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Address is not valid</i>
+                                            </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="mr-3" >Phone</span><br/>
+                                        <input formControlName="numberPhone" type="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter NumberPhone...">
+                                            <div *ngIf="insertFrm.controls['numberPhone'].hasError('required') && (insertFrm.controls['numberPhone'].dirty ||insertFrm.controls['numberPhone'].touched)">
+                                                <i class="ml-2 text-danger" >(*)NumberPhone is not valid</i>
+                                            </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="mr-3" >Name</span><br/>
+                                        <input formControlName="name" type="text" class="form-control form-control-user"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter Name...">
+                                            <div *ngIf="insertFrm.controls['name'].hasError('required') && (insertFrm.controls['name'].dirty ||insertFrm.controls['name'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Name is not valid</i>
+                                            </div>
+                                            
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="mr-3" >Position</span><br/>
+                                        <select formControlName="position"  class="custom-select w-50" id="inputGroupSelect01">
+                                            <option value="bartending" selected >Bartending</option>
+                                            <option value="cashier">Cashier</option>
+                                            <option value="service">Service</option>
+                                        </select>
+                                            
+                                    </div>
+
+
+
+
+                                    <button   [disabled]="!insertFrm.valid" (click)="onSubmit()"  class="btn btn-primary btn-user px-5 ">
+                                        Cập nhật
+                                    </button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

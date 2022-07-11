@@ -1,0 +1,1 @@
+export class Employee { docid?:string;id?: string; name?: string; address?: string ;email?:string ; numberPhone?:number; position?:string }

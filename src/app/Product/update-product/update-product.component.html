@@ -1,0 +1,116 @@
+<div style="background-image: url(https://login.cyberlearn.vn/static/media/background.b697469b.png) ;" class="w-75 container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5 ">
+                                <div class="text-left">
+                                    <h1 class="h4 text-gray-900 mb-4">Update Product</h1>
+                                </div>
+                                <form [formGroup] ="insertFrm" (ngSubmit)="onSubmit()"  class="user w-75">
+
+
+                                    <div class="form-group">
+                                        <span>Tên sản phẩm</span><br/>
+                                        <input [(ngModel)]="productDetail.name" formControlName="name"  class="form-control form-control-user"
+                                            placeholder="Enter Name...">
+                                            <div *ngIf="insertFrm.controls['name'].hasError('required') && (insertFrm.controls['name'].dirty ||insertFrm.controls['name'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Name is not valid</i>
+                                            </div>
+                                            
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <span>Giá</span><br/>
+                                        <input  [(ngModel)]="productDetail.price"  formControlName="price" type="number" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Price">
+                                            <div *ngIf="insertFrm.controls['price'].hasError('required') && (insertFrm.controls['price'].dirty ||insertFrm.controls['price'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Price is not valid</i>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <span>Số lượng</span><br/>
+                                        <input  [(ngModel)]="productDetail.amount"  formControlName="amount" type="number" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Enter Price">
+                                            <div *ngIf="insertFrm.controls['amount'].hasError('required') && (insertFrm.controls['amount'].dirty ||insertFrm.controls['amount'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Amount is not valid</i>
+                                            </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div  class="form-floating">
+                                            <span>Rating</span><br/>
+                                            <select   [(ngModel)]="productDetail.rating"  formControlName="rating"class="form-select form-control" id="floatingSelect" aria-label="Floating label select example">
+                                              <option value="1">1</option>
+                                              <option value="2">2</option>
+                                              <option value="3">3</option>
+                                              <option value="4">4</option>
+                                              <option value="5">5</option>
+                                            </select>
+                                          </div>
+
+                                          <div *ngIf="insertFrm.controls['rating'].hasError('required') && (insertFrm.controls['rating'].dirty ||insertFrm.controls['rating'].touched)">
+                                            <i class="ml-2 text-danger" >(*)Rating is not valid</i>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group">
+                                        <span>Trạng thái</span><br/>
+                                        <div  class="form-floating">
+                                            <select   [(ngModel)]="productDetail.status"  formControlName="status"  class="form-select form-control" id="floatingSelect" aria-label="Floating label select example">
+                                              <option value="0">Còn hàng</option>
+                                              <option value="1">Hết hàng</option>
+                                              <option value="2">Sắp về</option>
+                                            </select>
+                                          </div>
+
+                                            <div *ngIf="insertFrm.controls['status'].hasError('required') && (insertFrm.controls['status'].dirty ||insertFrm.controls['status'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Status is not valid</i>
+                                            </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span>Mô tả</span><br/>
+                                        <textarea [(ngModel)]="productDetail.description"  formControlName="description" type="text" class="form-control "
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter Description...">
+                                        </textarea>
+                                            <div *ngIf="insertFrm.controls['description'].hasError('required') && (insertFrm.controls['description'].dirty ||insertFrm.controls['description'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Description is not valid</i>
+                                            </div>
+                                            
+                                    </div>
+
+                           
+
+
+
+
+                                    <button [disabled]="!insertFrm.valid" (click)="onSubmit()"    class="btn btn-primary btn-user px-5 ">
+                                        Cập nhật
+                                    </button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

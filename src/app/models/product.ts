@@ -1,0 +1,1 @@
+export class Product { id?: number; name?: string; price?: string ;rating?:string;amount?:number;status?:number;description?:string;srcImg?:string}

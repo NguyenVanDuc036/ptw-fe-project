@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
 import { SharingService } from '../services/sharing.service';
 import { UserService } from '../services/user.service';
@@ -36,8 +37,28 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    this.authService.logout();
-    this.router.navigateByUrl("login")
+    Swal.fire({
+      title: 'Bạn có chắc là đăng xuất?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý!!'
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+        if(localStorage.getItem('user')){
+          this.authService.Logout()
+          this.router.navigateByUrl("login")
+        }else{
+          this.authService.logout();
+          this.router.navigateByUrl("login")
+        }
+      }
+    })
+
+    
+   
     // location.href="/login";
   }
 

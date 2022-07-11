@@ -26,14 +26,42 @@ import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { RegisterComponent } from './register/register.component';
+import { InsertEmployeeComponent } from './insert-employee/insert-employee.component';
+import { UpdateEmployeeComponent } from './employee/update-employee/update-employee.component';
+import { ProductListComponent } from './Product/product-list/product-list.component';
+import { InsertProductComponent } from './Product/insert-product/insert-product.component';
+import { UpdateProductComponent } from './Product/update-product/update-product.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {MatNativeDateModule} from '@angular/material/core';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { isSubmitGuard } from 'src/guards/isSubmit.guard';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { ProductDetailComponent } from './Product/product-detail/product-detail.component';
 
 
 const appRouters : Routes = [
   {
-    path:"home" , component:HomeComponent
+    path:"" , component:LoginComponent
+  },{
+    path:"table" , component:DataTableComponent
   },
   {
-    path:"students" , component:NodeItemComponent,
+    path:"user" , component:HomeComponent
+  },{
+    path:"register" , component:RegisterComponent
+  },
+  {
+    path:"employees" , component:HomeComponent,
   },{
     path:"addstudent" , component:StudentComponent,
   },{
@@ -47,10 +75,36 @@ const appRouters : Routes = [
     canActivate:[AuthGuard],//khai báo guard dùng để ràng buộc phải đăng nhập mới được vào
     children:[
       { path:"students" , component:NodeItemComponent,},          
-      { path:"addstudent" , component:StudentComponent,}           
+      { path:"addstudent" , component:StudentComponent},
+      {
+        path:"employees" , component:HomeComponent,
+      },
+      {
+        path:"addemployee" , component:InsertEmployeeComponent,canDeactivate:[isSubmitGuard],
+      }  ,
+      {
+        path:"employees/:id" , component:UpdateEmployeeComponent,
+      } ,
+      {
+        path:"employees/detail/:id" , component:EmployeeDetailComponent,
+      } ,
+      {
+        path:"products" , component:ProductListComponent,
+      }  
+      ,
+      {
+        path:"addproduct" , component:InsertProductComponent,
+      }  
+      ,
+      {
+        path:"product/:id" , component:UpdateProductComponent,
+      }  ,
+      {
+        path:"product/detail/:id" , component:ProductDetailComponent,
+      }  
       ],
   },
-  {path:'**', component:LoginLayoutComponent},// '**' có ý nghĩa nếu không có path nào khớp với các path đã khai báo trong routes 
+  {path:'**', component:LoginComponent},// '**' có ý nghĩa nếu không có path nào khớp với các path đã khai báo trong routes 
 ]
 @NgModule({
   declarations: [
@@ -65,7 +119,16 @@ const appRouters : Routes = [
     StudentComponent,
     LoginComponent,
     MainLayoutComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    RegisterComponent,
+    InsertEmployeeComponent,
+    UpdateEmployeeComponent,
+    ProductListComponent,
+    InsertProductComponent,
+    UpdateProductComponent,
+    DataTableComponent,
+    EmployeeDetailComponent,
+    ProductDetailComponent
   ],
   imports: [
     RouterModule.forRoot(appRouters),
@@ -74,11 +137,18 @@ const appRouters : Routes = [
     AngularFirestoreModule,
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features=> dùng cho chức năng update
     FormsModule,
+    BrowserAnimationsModule,
     NgxPaginationModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule
-    
+    CommonModule,
+    NoopAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
     
   ],
   providers: [],

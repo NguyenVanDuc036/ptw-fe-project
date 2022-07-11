@@ -1,0 +1,60 @@
+<div style="background-image: url(https://login.cyberlearn.vn/static/media/background.b697469b.png) ;" class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div style="border-right: 2px solid gray;"  class="col-lg-6 d-none d-lg-block ">
+                            <img width="100%" class="mt-5" src="https://webpress.vn/images/user/login.png" />
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Register a new membership</h1>
+                                </div>
+                                <form [formGroup] ="insertFrm" (ngSubmit)="onSubmit()" class="user">
+                                    <div class="form-group">
+                                        <input formControlName="email" type="email" class="form-control form-control-user"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter Email Address...">
+                                            <div *ngIf="insertFrm.controls['email'].hasError('required') && (insertFrm.controls['email'].dirty ||insertFrm.controls['email'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Email is not valid</i>
+                                            </div>
+                                            <small  *ngIf="insertFrm.controls['email'].hasError('maxLength') && (insertFrm.controls['email'].dirty ||insertFrm.controls['email'].valueChanges)" class="text-danger">
+                                                <i class="ml-2 text-danger" >(*)Length must be from 6-20 characters</i>
+                                            </small>
+                                            <small  *ngIf="insertFrm.controls['email'].hasError('minLength') && (insertFrm.controls['email'].dirty ||insertFrm.controls['email'].valueChanges)" class="text-danger">
+                                                <i class="ml-2 text-danger" >(*)Length must be from 6-20 characters</i>
+                                            </small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input formControlName="password" type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                            <div *ngIf="insertFrm.controls['password'].hasError('required') && (insertFrm.controls['password'].dirty ||insertFrm.controls['password'].touched)">
+                                                <i class="ml-2 text-danger" >(*)Password is not valid</i>
+                                            </div>
+                                    </div>
+                                    
+                                    <button  (click)="onSubmit()"  class="btn btn-info btn-user btn-block">
+                                        Register
+                                    </button>
+                                    <div class="text-center">
+                                        <a class="small" [routerLink]="['/login']" >Login!</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

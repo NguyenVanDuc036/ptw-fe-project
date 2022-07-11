@@ -1,0 +1,59 @@
+<div class="card w-50  m-auto" >
+    <div class="card-header text-center" >
+        <img width="400" src={{productDetail.srcImg}} />
+    </div>
+    <div class="card-body" >
+        <h4>Tên : {{productDetail.name}}</h4>
+        <h4>Giá : <span class="text-danger" >{{productDetail.price}}₫</span> </h4>
+        <h4>số lượng : <span class="text-success" >{{productDetail.amount}}</span> </h4>
+        <span  [ngSwitch]="productDetail.rating" > Đánh giá  :
+            <span *ngSwitchCase="1">
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+         </span>
+         <span *ngSwitchCase="2">
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+         </span>
+         <span *ngSwitchCase="3">
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+         </span>
+         <span *ngSwitchCase="4">
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid fa-star"></i>
+         </span>
+         <span *ngSwitchCase="5">
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+             <i class="fa-solid text-warning fa-star"></i>
+         </span>
+         </span><br/><br/>
+         <span>Trạng thái : 
+            <span [ngSwitch]="productDetail.status" > 
+
+                <span *ngSwitchCase="0" class="bg-success px-3 text-center text-light py-2 " style="border-radius: 5px;width: 6rem;" >Còn hàng</span>
+                <span *ngSwitchCase="1" class="bg-dange px-3  text-center text-light py-2 " style="border-radius: 5px;width: 6rem;" >Hết hàng</span>
+                <span *ngSwitchCase="2" class="bg-warning px-3  text-center text-light py-2 " style="border-radius: 5px;width: 6rem;" >Sắp về</span>
+              </span>
+         </span><br/><br/>
+         <h4>Mô tả : {{productDetail.description}}</h4>
+    </div>
+    <div class="card-footer" >
+        <button [routerLink]="['/admin/products']" class="btn btn-outline-primary mr-2"  >Danh sách sản phẩm</button>
+    </div>
+</div>

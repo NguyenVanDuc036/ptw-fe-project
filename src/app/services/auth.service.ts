@@ -44,5 +44,26 @@ export class AuthService {
     })
   }
 
-  
+  async signIn(email:string , password:string){
+    return await this.afAuth.signInWithEmailAndPassword(email,password)
+    .then(res=>{
+      this.sharing.isUserLoggedIn.next(true)
+      localStorage.setItem('user',JSON.stringify(res.user))
+    })
+  }
+
+  async signUp(email:string , password:string){
+    return  await this.afAuth.createUserWithEmailAndPassword(email,password)
+    .then(res=>{
+      console.log('successs');
+    })
+  }
+
+
+  Logout(){
+    this.afAuth.signOut()
+    localStorage.removeItem('user')
+  }
+
+
 }
